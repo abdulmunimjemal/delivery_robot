@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot Status</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Robot Control Panel</h1>
+        
+        <div class="status-card">
+            <h2>Current Status</h2>
+            <div id="current-status">
+                <span class="status-indicator" id="robot-status">IDLE</span>
+                <p>Battery: <span id="battery-level">85</span>%</p>
+            </div>
+        </div>
+
+        <div class="logs-card">
+            <h2>Activity Log</h2>
+            <div id="activity-logs">
+                {% for log in robot.logs %}
+                <div class="log-entry">{{ log }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="navigation-card">
+            <h2>Manual Control</h2>
+            <div class="table-buttons">
+                <button class="table-btn" data-table="1">Table 1</button>
+                <button class="table-btn" data-table="2">Table 2</button>
+                <button class="table-btn" data-table="3">Table 3</button>
+                <button class="table-btn" data-table="4">Table 4</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        
+        socket.on('robot_status', updateStatus => {
+            document.getElementById('robot-status').textContent = updateStatus.status;
+            document.getElementById('battery-level').textContent = updateStatus.battery;
+        });
+
+        socket.on('robot_log', log => {
+            const logsContainer = document.getElementById('activity-logs');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.textContent = log.message;
+            logsContainer.prepend(logEntry);
+        });
+
+        document.querySelectorAll('.table-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tableNumber = button.dataset.table;
+                fetch(`/robot/tasks/manual/${tableNumber}`, { method: 'POST' });
+            });
+        });
+    </script>
+</body>
+</html>
