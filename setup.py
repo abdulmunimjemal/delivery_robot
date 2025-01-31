@@ -13,7 +13,6 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share',package_name,'launch'),  glob('launch/*')),
         (os.path.join('share',package_name,'config'), glob('config/*')),
-        (os.path.join('share',package_name,'world/maze'), glob('world/maze/*')),
         (os.path.join('share',package_name,'world/hotel'), glob('world/hotel/*')),
         (os.path.join('share',package_name,'models/table'), glob('models/table/*')),
         
@@ -29,7 +28,6 @@ setup(
         'console_scripts': [
             'occupancy_grid_pub = delivery_robot.occupancy_grid_pub:main',
             'sdf_spawner = delivery_robot.spawn_entity:main',
-            'maze_solver = delivery_robot.maze_solver:main',
             'delivery_waiter_lite = delivery_robot.hotel_waiter_single_button:start_app',
             'delivery_waiter = delivery_robot.hotel_waiter_multi_button:start_app'
 
