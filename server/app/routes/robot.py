@@ -19,11 +19,12 @@ class RobotController:
         self.status = "idle"
         self.logs = []
         self.table_coordinates = {
-            1: (-0.74, 2.66),
-            2: (3.89, 2.65),
-            3: (3.85, -4.12),
-            4: (-0.40, -4.06)
+            1: (-0.74, 2.00),
+            2: (3.00, 2.65),
+            3: (3.00, -4.12),
+            4: (-0.40, -3.26)
         }
+
         self.base_coordinates = (-5.20, -3.38)
         self.current_order = None
         self.ros_thread = threading.Thread(target=self.init_ros)
@@ -144,7 +145,7 @@ def process_next_order():
     session = db_session()
     order = session.query(Order).filter_by(status='ready').first()
     print("Processing: Order", order)
-    print("ALl Orders: ", [order.status for order in session.query(Order).all()])
+    print("All Orders: ", [order.status for order in session.query(Order).all()])
     if order:
         session.commit()
         order_data = {

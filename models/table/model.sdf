@@ -3,6 +3,7 @@
   <model name="table">
     <static>true</static>
     <link name="link">
+      <!-- Table Top -->
       <collision name="surface">
         <pose>0 0 1.0 0 0 0</pose>
         <geometry>
@@ -10,16 +11,8 @@
             <size>1.5 0.8 0.03</size>
           </box>
         </geometry>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0.6</mu>
-              <mu2>0.6</mu2>
-            </ode>
-          </friction>
-        </surface>
       </collision>
-      <visual name="visual1">
+      <visual name="table_top">
         <pose>0 0 1.0 0 0 0</pose>
         <geometry>
           <box>
@@ -33,6 +26,24 @@
           </script>
         </material>
       </visual>
+
+      <!-- Fabric Skirt (Fixed Parameters) -->
+      <visual name="skirt">
+        <pose>0 0 0.6 0 0 0</pose> <!-- Raised position -->
+        <geometry>
+          <box>
+            <size>1.5 0.8 0.1</size> <!-- Thicker skirt -->
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.9 0.9 0.9 1</ambient>
+          <diffuse>0.9 0.9 0.9 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+
+      <!-- All Four Legs Properly Defined -->
+      <!-- Front Left Leg -->
       <collision name="front_left_leg">
         <pose>0.68 0.38 0.5 0 0 0</pose>
         <geometry>
@@ -53,10 +64,12 @@
         <material>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
+            <name>Gazebo/BrushedSteel</name>
           </script>
         </material>
       </visual>
+
+      <!-- Front Right Leg -->
       <collision name="front_right_leg">
         <pose>0.68 -0.38 0.5 0 0 0</pose>
         <geometry>
@@ -77,34 +90,12 @@
         <material>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
+            <name>Gazebo/BrushedSteel</name>
           </script>
         </material>
       </visual>
-      <collision name="back_right_leg">
-        <pose>-0.68 -0.38 0.5 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.02</radius>
-            <length>1.0</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <visual name="back_right_leg">
-        <pose>-0.68 -0.38 0.5 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.02</radius>
-            <length>1.0</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-        </material>
-      </visual>
+
+      <!-- Back Left Leg -->
       <collision name="back_left_leg">
         <pose>-0.68 0.38 0.5 0 0 0</pose>
         <geometry>
@@ -125,8 +116,93 @@
         <material>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
+            <name>Gazebo/BrushedSteel</name>
           </script>
+        </material>
+      </visual>
+
+      <!-- Back Right Leg -->
+      <collision name="back_right_leg">
+        <pose>-0.68 -0.38 0.5 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>1.0</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="back_right_leg">
+        <pose>-0.68 -0.38 0.5 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>1.0</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/BrushedSteel</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Improved Flower Arrangement -->
+      <visual name="vase">
+        <pose>0 0 1.02 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>0.15</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Glass</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Realistic Flower -->
+      <visual name="stem">
+        <pose>0 0 1.09 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.25</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.4 0.1 1</ambient>
+          <diffuse>0.2 0.6 0.2 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Flower Petals (More Detailed) -->
+      <visual name="petals">
+        <pose>0 0 1.2 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.07</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>1 0.1 0.1 1</ambient>
+          <diffuse>0.9 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Flower Center -->
+      <visual name="flower_center">
+        <pose>0 0 1.2 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.9 0.8 0.1 1</ambient>
         </material>
       </visual>
     </link>
