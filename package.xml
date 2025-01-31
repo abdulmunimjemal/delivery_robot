@@ -4,7 +4,7 @@
   <name>delivery_robot</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="dinakar@todo.todo">dinakar</maintainer>
+  <maintainer email="abdulmunimjemal@gmail.com">Abdulmunim</maintainer>
   <license>TODO: License declaration</license>
 
   <test_depend>ament_copyright</test_depend>
