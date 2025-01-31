@@ -1,91 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Place Your Order</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        /* Enhanced Status Styles */
-        .status-badge {
-            padding: 8px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-        }
+      /* Enhanced Status Styles */
+      .status-badge {
+        padding: 8px 12px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: bold;
+      }
 
-        .status-pending { background: #fff3cd; color: #856404; }
-        .status-preparing { background: #cce5ff; color: #004085; }
-        .status-ready { background: #d4edda; color: #155724; }
-        .status-delivered { background: #e2e3e5; color: #383d41; }
-        .status-canceled { background: #f8d7da; color: #721c24; }
+      .status-pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+      .status-preparing {
+        background: #cce5ff;
+        color: #004085;
+      }
+      .status-ready {
+        background: #d4edda;
+        color: #155724;
+      }
+      .status-delivered {
+        background: #e2e3e5;
+        color: #383d41;
+      }
+      .status-canceled {
+        background: #f8d7da;
+        color: #721c24;
+      }
 
-        .preparing-progress {
-            width: 100%;
-            height: 8px;
-            margin-top: 8px;
-        }
+      .preparing-progress {
+        width: 100%;
+        height: 8px;
+        margin-top: 8px;
+      }
 
-        .existing-order {
-            position: relative;
-            border-left: 4px solid;
-            margin-bottom: 16px;
-            padding: 16px;
-        }
+      .existing-order {
+        position: relative;
+        border-left: 4px solid;
+        margin-bottom: 16px;
+        padding: 16px;
+      }
 
-        .existing-order.status-pending { border-color: #ffc107; }
-        .existing-order.status-preparing { border-color: #0d6efd; }
-        .existing-order.status-ready { border-color: #198754; }
-        .existing-order.status-delivered { border-color: #6c757d; }
-        .existing-order.status-canceled { border-color: #dc3545; }
+      .existing-order.status-pending {
+        border-color: #ffc107;
+      }
+      .existing-order.status-preparing {
+        border-color: #0d6efd;
+      }
+      .existing-order.status-ready {
+        border-color: #198754;
+      }
+      .existing-order.status-delivered {
+        border-color: #6c757d;
+      }
+      .existing-order.status-canceled {
+        border-color: #dc3545;
+      }
 
-        .order-status {
-            margin: 12px 0;
-            display: flex;
-            flex-direction: column;
-        }
+      .order-status {
+        margin: 12px 0;
+        display: flex;
+        flex-direction: column;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="logo-container">
+        <i class="fas fa-robot logo-icon"></i>
+        <h1 class="app-title">Robo Restaurant Kitchen</h1>
+      </div>
+    </header>
     <div id="table-selection" class="table-selection-screen">
-        <h2>Welcome! Please Select Your Table</h2>
-        <div class="table-grid">
-            <button class="table-btn" data-table="1">Table 1</button>
-            <button class="table-btn" data-table="2">Table 2</button>
-            <button class="table-btn" data-table="3">Table 3</button>
-            <button class="table-btn" data-table="4">Table 4</button>
-        </div>
+      <h2>Welcome! Please Select Your Table</h2>
+      <div class="table-grid">
+        <button class="table-btn" data-table="1">Table 1</button>
+        <button class="table-btn" data-table="2">Table 2</button>
+        <button class="table-btn" data-table="3">Table 3</button>
+        <button class="table-btn" data-table="4">Table 4</button>
+      </div>
     </div>
 
+    <div class="container" id="main-interface" style="display: none">
+      <h1>Place Your Order (Table <span id="selected-table"></span>)</h1>
 
-    <div class="container" id="main-interface" style="display: none;">
-        <h1>Place Your Order (Table <span id="selected-table"></span>)</h1>
-        
-        <!-- Existing Orders Section -->
-    <div class="existing-orders">
+      <!-- Existing Orders Section -->
+      <div class="existing-orders">
         <h2>Active Orders</h2>
         <div id="existing-orders-list"></div>
-    </div>
-    
-        <!-- Menu Section -->
-        <div class="menu-section">
-            <h2>Menu</h2>
-            <div id="menu-items" class="menu-grid"></div>
-        </div>
+      </div>
 
-        <!-- Cart Section -->
-        <div class="cart-section">
-            <h2>Your Order</h2>
-            <div id="cart-items"></div>
-            <div class="order-summary">
-                <p>Total: <span id="cart-total">0.00</span> ETB</p>
-                <input type="hidden" id="table-number" value="">
-                <button id="place-order" class="btn btn-primary">Place Order</button>
-                <div id="order-message"></div>
-            </div>
+      <!-- Menu Section -->
+      <div class="menu-section">
+        <h2>Menu</h2>
+        <div id="menu-items" class="menu-grid"></div>
+      </div>
+
+      <!-- Cart Section -->
+      <div class="cart-section">
+        <h2>Your Order</h2>
+        <div id="cart-items"></div>
+        <div class="order-summary">
+          <p>Total: <span id="cart-total">0.00</span> ETB</p>
+          <input type="hidden" id="table-number" value="" />
+          <button id="place-order" class="btn btn-primary">Place Order</button>
+          <div id="order-message"></div>
         </div>
+      </div>
     </div>
     <script src="/static/js/user.js"></script>
-</body>
+  </body>
 </html>

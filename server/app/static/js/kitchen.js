@@ -104,10 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
       (o) => o.status === "pending"
     ).length;
     stats.preparing.textContent = currentOrders.filter(
-      (o) => o.status === "preparing"
+      (o) =>
+        o.status === "preparing" ||
+        o.status === "confirmed" ||
+        o.status === "ready"
     ).length;
     stats.ready.textContent = currentOrders.filter(
-      (o) => o.status === "ready"
+      (o) => o.status === "delivered"
     ).length;
   };
 
