@@ -2,6 +2,11 @@
 
 This final project simulates an autonomous delivery robot in a hotel environment using ROS 2, Gazebo, and various ROS packages. The simulation includes robot deployment, object spawning (hotel, tables), mapping, and navigation. The system leverages the TurtleBot3 model along with the Nav2 stack for autonomous navigation.
 
+# Demo
+
+[![Demo](https://img.youtube.com/vi/MEJv7bwRoXg/0.jpg)](https://youtu.be/MEJv7bwRoXg)
+
+
 ## System Architecture
 
 The system is composed of the following main modules:
