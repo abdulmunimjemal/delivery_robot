@@ -156,7 +156,7 @@ source /usr/share/gazebo/setup.bash
 
 A related document detailing the sensor system and path planning algorithm will be included in the project report.
 
-The project report will be available in the repository.
+The project report will be available in the repository. here is the link to the report [Project Report](./Doc/Project%20Report.pdf)
 
 ## Contributing
 
