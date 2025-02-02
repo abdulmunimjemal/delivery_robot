@@ -6,24 +6,27 @@ This final project simulates an autonomous delivery robot in a hotel environment
 
 [![Demo](https://img.youtube.com/vi/MEJv7bwRoXg/0.jpg)](https://youtu.be/MEJv7bwRoXg)
 
-
 ## System Architecture
 
 The system is composed of the following main modules:
 
 ### A. Environment Simulation (Gazebo)
+
 - **Gazebo Server (gzserver)**: Runs the physics engine and world simulation.
 - **Gazebo Client (gzclient)**: Provides a GUI for visualizing the simulation.
 
 ### B. Robot Deployment
+
 - **State Publisher**: Publishes the robot’s URDF model and joint states.
 - **TurtleBot3 Spawner**: Spawns the TurtleBot3 robot in the simulated environment.
 
 ### C. Object Spawning
+
 - **Hotel Model Spawner**: Loads the predefined hotel world (`hotel.sdf`).
 - **Table Spawners**: Adds multiple tables at specific locations in the world.
 
 ### D. Mapping & Navigation
+
 - **SLAM Toolbox (Optional)**: Used for mapping if required.
 - **Nav2 (Navigation Stack 2)**: Enables path planning and autonomous movement using a pre-built map (`hotel_world.yaml`) and robot navigation parameters (`tb3_nav_params.yaml`).
 
@@ -34,7 +37,7 @@ To set up and run this project, you need the following:
 - **ROS 2**: Install ROS 2 humble.
 - **TurtleBot3 Packages**: Install the necessary TurtleBot3 ROS 2 packages.
 - **Gazebo**: Make sure Gazebo is installed and properly configured for ROS 2.
-- System Stack: Ubuntu 22.04 + ROS2 Humble + Gazebo 
+- System Stack: Ubuntu 22.04 + ROS2 Humble + Gazebo
 
 If you are using **VS Code**, ensure you have the following environment variables set up before launching the simulation.
 
@@ -85,6 +88,7 @@ source /usr/share/gazebo/setup.bash
    ```
 
    This will launch the following components:
+
    - **Gazebo Server and Client**: For simulating the environment and visualizing the robot.
    - **TurtleBot3 Robot**: Spawned at the specified coordinates.
    - **Hotel Model**: Loaded into the environment.
@@ -147,6 +151,12 @@ source /usr/share/gazebo/setup.bash
 
 2. **Map and Navigate**:
    The robot uses a pre-built map (`hotel_world.yaml`) and a configured navigation stack (`tb3_nav_params.yaml`) to autonomously navigate the environment.
+
+## Project Report
+
+A related document detailing the sensor system and path planning algorithm will be included in the project report.
+
+The project report will be available in the repository.
 
 ## Contributing
 
